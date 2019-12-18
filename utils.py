@@ -1,10 +1,6 @@
-import os
 import numpy as np
 import cv2
-import scipy.io as sio
 from math import cos, sin
-import dlib
-from imutils import face_utils
 
 def plot_pose_cube(img, yaw, pitch, roll, tdx=None, tdy=None, size=150.):
     # Input is a cv2 image
@@ -80,33 +76,33 @@ def draw_axis(img, yaw, pitch, roll, tdx=None, tdy=None, size = 100):
     cv2.line(img, (int(tdx), int(tdy)), (int(x3),int(y3)),(255,0,0),2)
 
     return img
-    
+
 def crop_face_loosely(shape, img, input_size):
     x = []
     y = []
     for (_x, _y) in shape:
         x.append(_x)
         y.append(_y)
-    
+
     max_x = min(max(x), img.shape[1])
     min_x = max(min(x), 0)
     max_y = min(max(y), img.shape[0])
     min_y = max(min(y), 0)
-    
+
     Lx = max_x - min_x
     Ly = max_y - min_y
-    
+
     Lmax = int(max(Lx, Ly) * 2.0)
-    
+
     delta = Lmax // 2
-    
+
     center_x = (max(x) + min(x)) // 2
     center_y = (max(y) + min(y)) // 2
     start_x = int(center_x - delta)
     start_y = int(center_y - delta - 30)
     end_x = int(center_x + delta)
     end_y = int(center_y + delta - 30)
-    
+
     if start_y < 0:
         start_y = 0
     if start_x < 0:
@@ -115,13 +111,13 @@ def crop_face_loosely(shape, img, input_size):
         end_x = img.shape[1]
     if end_y > img.shape[0]:
         end_y = img.shape[0]
-    
+
     crop_face = img[start_y:end_y, start_x:end_x]
-    
+
     cv2.imshow('crop_face', crop_face)
-    
+
     crop_face = cv2.resize(crop_face, (input_size, input_size))
     input_img = np.asarray(crop_face, dtype=np.float32)
     normed_img = (input_img - input_img.mean()) / input_img.std()
-    
+
     return normed_img
