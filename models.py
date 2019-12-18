@@ -48,10 +48,16 @@ class AlexNet:
 
         model = tf.keras.Model(inputs=inputs, outputs=[fc_yaw, fc_pitch, fc_roll])
 
+        #losses = {
+        #    'yaw':self.__loss_angle,
+        #    'pitch':self.__loss_angle,
+        #    'roll':self.__loss_angle,
+        #}
+
         losses = {
-            'yaw':self.__loss_angle,
-            'pitch':self.__loss_angle,
-            'roll':self.__loss_angle,
+            'yaw':'categorical_crossentropy',
+            'pitch':'categorical_crossentropy',
+            'roll':'categorical_crossentropy',
         }
 
         model.compile(optimizer=tf.train.AdamOptimizer(), loss=losses)
