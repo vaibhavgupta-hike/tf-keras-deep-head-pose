@@ -11,6 +11,7 @@ class AlexNet:
         self.class_num = class_num
         self.batch_size = batch_size
         self.input_size = input_size
+        self.idx_tensor = tf.convert_to_tensor(range(self.class_num), dtype=tf.float32)
         self.dataset = dataset
         self.model = self.__create_model()
 
@@ -23,7 +24,6 @@ class AlexNet:
                                 logits=y_pred
                               )
         # MSE loss
-        idx_tensor = tf.convert_to_tensor(range(self.class_num), dtype=tf.float32)
         pred_cont = tf.reduce_sum(tf.nn.softmax(y_pred) * idx_tensor, axis=1) * 3 - 99  # Understand this better
         mse_loss = tf.keras.losses.MSE(y_true=cont_true, y_pred=pred_cont)
         # Total loss
@@ -51,10 +51,16 @@ class AlexNet:
 
         model = tf.keras.Model(inputs=inputs, outputs=[fc_yaw, fc_pitch, fc_roll])
 
+        #losses = {
+        #    'yaw':self.__loss_angle,
+        #    'pitch':self.__loss_angle,
+        #    'roll':self.__loss_angle,
+        #}
+
         losses = {
-            'yaw':self.__loss_angle,
-            'pitch':self.__loss_angle,
-            'roll':self.__loss_angle,
+            'yaw':'categorical_crossentropy',
+            'pitch':'categorical_crossentropy',
+            'roll':'categorical_crossentropy',
         }
         model.compile(optimizer=tf.keras.optimizers.Adam(), loss=losses)
         return model
