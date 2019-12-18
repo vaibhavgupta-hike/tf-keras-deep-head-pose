@@ -10,15 +10,17 @@ import datasets
 import utils
 import models
 
-PROJECT_DIR = "E:/demo/python/head_pose/"
+PROJECT_DIR = "/home/vaibhavg/tf-keras-deep-head-pose"
 
-AFLW2000_DATA_DIR = 'E:/data/AFLW2000/'
+DATA_DIR = '/home/vaibhavg/data/'
+
+AFLW2000_DATA_DIR = DATA_DIR + 'AFLW2000/'
 AFLW2000_MODEL_FILE = PROJECT_DIR + 'model/aflw2000_model.h5'
-AFLW2000_TEST_SAVE_DIR = 'E:/ml/data/aflw2000_test/'
+AFLW2000_TEST_SAVE_DIR = DATA_DIR + 'aflw2000_test/'
 
-BIWI_DATA_DIR = 'E:/ml/data/Biwi/kinect_head_pose_db/hpdb/'
+BIWI_DATA_DIR = DATA_DIR + 'Biwi/kinect_head_pose_db/hpdb/'
 BIWI_MODEL_FILE = PROJECT_DIR + 'model/biwi_model.h5'
-BIWI_TEST_SAVE_DIR = 'E:/ml/data/biwi_test/'
+BIWI_TEST_SAVE_DIR = DATA_DIR + 'biwi_test/'
 
 BIN_NUM = 66
 INPUT_SIZE = 64
