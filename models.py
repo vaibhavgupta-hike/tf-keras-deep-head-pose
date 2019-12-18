@@ -5,10 +5,6 @@ import cv2
 import scipy.io as sio
 import utils
 
-import tensorflow.contrib.eager as tfe
-tfe.enable_eager_execution()
-
-# np.set_printoptions(threshold=np.nan)
 
 EPOCHS=25
 
