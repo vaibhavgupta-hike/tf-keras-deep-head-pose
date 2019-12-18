@@ -4,7 +4,7 @@ from imutils import face_utils
 
 import datasets
 import utils
-import models
+import model
 
 PROJECT_DIR = "E:/demo/python/head_pose/"
 
@@ -25,7 +25,7 @@ EPOCHS=20
 
 dataset = datasets.Biwi(BIWI_DATA_DIR, 'filename_list.txt', batch_size=BATCH_SIZE, input_size=INPUT_SIZE, ratio=0.95)
 
-net = models.AlexNet(dataset, BIN_NUM, batch_size=BATCH_SIZE, input_size=INPUT_SIZE)
+net = model.AlexNet(dataset, BIN_NUM, batch_size=BATCH_SIZE, input_size=INPUT_SIZE)
 
 net.train(BIWI_MODEL_FILE, max_epoches=EPOCHS, load_weight=True)
 
