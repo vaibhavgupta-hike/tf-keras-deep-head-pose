@@ -1,8 +1,5 @@
 import tensorflow as tf
-import os
 import numpy as np
-import cv2
-import scipy.io as sio
 import utils
 
 
