@@ -1,13 +1,4 @@
-import tensorflow as tf
-import os
-import numpy as np
-import cv2
-import scipy.io as sio
-import dlib
-from imutils import face_utils
-
 import datasets
-import utils
 import models
 
 PROJECT_DIR = "/home/vaibhavg/tf-keras-deep-head-pose"
